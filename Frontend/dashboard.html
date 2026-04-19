@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NSU Bus — Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar">
+    <div class="nav-brand">🚌 <span>NSU Bus</span></div>
+    <div class="nav-right">
+      <span class="nav-greeting">Hey, <strong id="nav-name">Student</strong></span>
+      <button class="btn-logout" onclick="logout()">Log Out</button>
+    </div>
+  </nav>
+
+  <!-- ===== MAIN LAYOUT ===== -->
+  <div class="dashboard-layout">
+
+    <!-- ===== SIDEBAR: booking form ===== -->
+    <aside class="sidebar">
+      <h2 class="sidebar-title">Book a Seat</h2>
+
+      <div class="field">
+        <label>1. Choose Route</label>
+        <select id="routeSelect" onchange="loadSchedules()">
+          <option value="">— Select Route —</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>2. Choose Schedule</label>
+        <select id="scheduleSelect" onchange="loadSeats()" disabled>
+          <option value="">— Select Schedule —</option>
+        </select>
+      </div>
+
+      <!-- Fare badge -->
+      <div id="fare-badge" class="fare-badge hidden">
+        Fare: <strong id="fare-amount">—</strong> BDT
+      </div>
+
+      <!-- Seat map grid -->
+      <div class="field" id="seat-section" style="display:none">
+        <label>3. Pick a Seat</label>
+        <div class="seat-legend">
+          <span class="dot free"></span> Available
+          <span class="dot taken"></span> Taken
+          <span class="dot selected"></span> Your pick
+        </div>
+        <div id="seat-grid" class="seat-grid"></div>
+        <p id="selected-seat-label" class="selected-seat-label"></p>
+      </div>
+
+      <div id="book-error" class="form-error hidden"></div>
+
+      <button class="btn-primary" id="book-btn" onclick="bookSeat()" disabled>
+        <span class="btn-text">Confirm Booking</span>
+        <span class="btn-loader hidden">●●●</span>
+      </button>
+    </aside>
+
+    <!-- ===== MAIN: booking history ===== -->
+    <main class="main-content">
+      <div class="section-header">
+        <h2>My Bookings</h2>
+        <button class="btn-refresh" onclick="loadMyBookings()">↻ Refresh</button>
+      </div>
+
+      <div id="bookings-container">
+        <p class="empty-note">Loading your bookings…</p>
+      </div>
+    </main>
+
+  </div>
+
+  <!-- ===== SUCCESS TOAST ===== -->
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NSU Bus — Sign In</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/auth.css" />
+</head>
+<body>
+
+  <!-- Decorative background shapes -->
+  <div class="bg-circle c1"></div>
+  <div class="bg-circle c2"></div>
+
+  <div class="auth-wrapper">
+
+    <!-- Left panel: brand info -->
+    <div class="brand-panel">
+      <div class="brand-logo">🚌</div>
+      <h1 class="brand-name">NSU<br/>BUS</h1>
+      <p class="brand-tagline">North South University<br/>Student Transport Portal</p>
+      <ul class="brand-features">
+        <li>✦ Book seats in seconds</li>
+        <li>✦ Live seat availability</li>
+        <li>✦ Instant booking history</li>
+        <li>✦ One-tap cancellation</li>
+      </ul>
+    </div>
+
+    <!-- Right panel: forms -->
+    <div class="form-panel">
+
+      <!-- Tab switcher -->
+      <div class="tab-switcher">
+        <button class="tab active" id="tab-login" onclick="showTab('login')">Log In</button>
+        <button class="tab" id="tab-signup" onclick="showTab('signup')">Sign Up</button>
+      </div>
+
+      <!-- ===== LOGIN FORM ===== -->
+      <form id="loginForm" class="auth-form" onsubmit="handleLogin(event)">
+        <h2>Welcome back 👋</h2>
+        <p class="form-sub">Enter your student credentials to continue</p>
+
+        <div class="field">
+          <label>Student ID</label>
+          <input type="text" id="login-sid" placeholder="e.g. 2211234" required />
+        </div>
+        <div class="field">
+          <label>Password</label>
+          <div class="pw-wrap">
+            <input type="password" id="login-pw" placeholder="Your password" required />
+            <button type="button" class="toggle-pw" onclick="togglePw('login-pw', this)">Show</button>
+          </div>
+        </div>
+
+        <div id="login-error" class="form-error hidden"></div>
+
+        <button type="submit" class="btn-primary" id="login-btn">
+          <span class="btn-text">Log In</span>
+          <span class="btn-loader hidden">●●●</span>
+        </button>
+
+        <p class="switch-note">No account? <a onclick="showTab('signup')">Sign Up</a></p>
+      </form>
+
+      <!-- ===== SIGNUP FORM ===== -->
+      <form id="signupForm" class="auth-form hidden" onsubmit="handleSignup(event)">
+        <h2>Create account</h2>
+        <p class="form-sub">Register once, book anytime</p>
+
+        <div class="field">
+          <label>Student ID</label>
+          <input type="text" id="su-sid" placeholder="e.g. 2211234" required />
+        </div>
+        <div class="field">
+          <label>Full Name</label>
+          <input type="text" id="su-name" placeholder="Reza Ahmed" required />
+        </div>
+        <div class="field">
+          <label>Email Address</label>
+          <input type="email" id="su-email" placeholder="you@northsouth.edu" required />
+        </div>
+        <div class="field">
+          <label>Phone Number</label>
+          <input type="tel" id="su-phone" placeholder="01XXXXXXXXX" required />
+        </div>
+        <div class="field">
+          <label>Password</label>
+          <div class="pw-wrap">
+            <input type="password" id="su-pw" placeholder="Min. 6 characters" required />
+            <button type="button" class="toggle-pw" onclick="togglePw('su-pw', this)">Show</button>
+          </div>
+        </div>
+
+        <div id="signup-error" class="form-error hidden"></div>
+        <div id="signup-success" class="form-success hidden"></div>
+
+        <button type="submit" class="btn-primary" id="signup-btn">
+          <span class="btn-text">Create Account</span>
+          <span class="btn-loader hidden">●●●</span>
+        </button>
+
+        <p class="switch-note">Already registered? <a onclick="showTab('login')">Log In</a></p>
+      </form>
+
+    </div><!-- /form-panel -->
+  </div><!-- /auth-wrapper -->
+
+  <script src="js/auth.js"></script>
+</body>
+</html>
